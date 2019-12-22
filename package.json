@@ -10,7 +10,10 @@
   "license": "MIT",
   "homepage": "https://github.com/DevExpress/dashboard-extensions#readme",
   "dependencies": {
-    "d3-funnel": "^1.2.1"
+    "@devexpress/analytics-core": "^19.2.5",
+    "d3-funnel": "^1.2.1",
+    "devexpress-dashboard": "^19.2.5",
+    "devextreme": "19.2.5"
   },
   "peerDependencies": {
     "devexpress-dashboard": "~19.1"

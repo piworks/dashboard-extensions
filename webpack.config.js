@@ -9,7 +9,8 @@ module.exports = {
         'funnel-d3-item': './src/funnel-d3-item/funnel-d3-extension.ts',
         'parameter-item': './src/parameter-item/parameter-item-extension.ts',
         'webpage-item': './src/webpage-item/webpage-extension.ts',
-        'simple-table-item': './src/simple-table/simple-table-extension.js'
+        'simple-table-item': './src/simple-table/simple-table-extension.js',
+        'sliding-text-item': './src/sliding-text-item/sliding-text-extension.ts'
     },
     output: {
         libraryTarget: 'umd',

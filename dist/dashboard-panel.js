@@ -3,7 +3,7 @@
         var a = typeof exports === "object" ? factory(require("jquery"), require("devexpress-dashboard/designer"), require("knockout")) : factory(root["$"], root["DevExpress"]["Dashboard"]["Designer"], root["ko"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__16__) {
     return function(modules) {
         var installedModules = {};
         function __webpack_require__(moduleId) {
@@ -67,17 +67,17 @@
             return Object.prototype.hasOwnProperty.call(object, property);
         };
         __webpack_require__.p = "";
-        return __webpack_require__(__webpack_require__.s = 13);
+        return __webpack_require__(__webpack_require__.s = 14);
     }({
         1: function(module, exports) {
             module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
         },
-        13: function(module, exports, __webpack_require__) {
+        14: function(module, exports, __webpack_require__) {
             "use strict";
             exports.__esModule = true;
-            var designer_1 = __webpack_require__(14);
+            var designer_1 = __webpack_require__(15);
             var $ = __webpack_require__(1);
-            var ko = __webpack_require__(15);
+            var ko = __webpack_require__(16);
             var CustomDashboardPanelExtension = function() {
                 function CustomDashboardPanelExtension(_dashboardControl, options) {
                     var _this = this;
@@ -320,11 +320,11 @@
                 return PanelExtensionDashboardInfo;
             }();
         },
-        14: function(module, exports) {
-            module.exports = __WEBPACK_EXTERNAL_MODULE__14__;
-        },
         15: function(module, exports) {
             module.exports = __WEBPACK_EXTERNAL_MODULE__15__;
+        },
+        16: function(module, exports) {
+            module.exports = __WEBPACK_EXTERNAL_MODULE__16__;
         }
     });
 });

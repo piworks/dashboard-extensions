@@ -3,7 +3,7 @@
         var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("devexpress-dashboard"), require("devextreme/ui/map")) : factory(root["DevExpress"]["Dashboard"], root["DevExpress"]["Dashboard"], root["DevExpress"]["ui"]["dxMap"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__11__) {
     return function(modules) {
         var installedModules = {};
         function __webpack_require__(moduleId) {
@@ -67,7 +67,7 @@
             return Object.prototype.hasOwnProperty.call(object, property);
         };
         __webpack_require__.p = "";
-        return __webpack_require__(__webpack_require__.s = 8);
+        return __webpack_require__(__webpack_require__.s = 9);
     }([ function(module, exports) {
         module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
     }, , , function(module, exports) {
@@ -147,13 +147,13 @@
             title: "DashboardWebCustomItemStringId.DefaultNameOnlineMap",
             index: 1
         };
-    }, , , , function(module, exports, __webpack_require__) {
+    }, , , , , function(module, exports, __webpack_require__) {
         "use strict";
         exports.__esModule = true;
         var meta_1 = __webpack_require__(4);
-        var online_map_viewer_1 = __webpack_require__(9);
-        var icon_1 = __webpack_require__(11);
-        __webpack_require__(12);
+        var online_map_viewer_1 = __webpack_require__(10);
+        var icon_1 = __webpack_require__(12);
+        __webpack_require__(13);
         var OnlineMapItemExtension = function() {
             function OnlineMapItemExtension(dashboardControl) {
                 this.name = meta_1.ONLINE_MAP_EXTENSION_NAME;
@@ -189,7 +189,7 @@
         }();
         exports.__esModule = true;
         var common_1 = __webpack_require__(0);
-        var map_1 = __webpack_require__(10);
+        var map_1 = __webpack_require__(11);
         var OnlineMapItem = function(_super) {
             __extends(OnlineMapItem, _super);
             function OnlineMapItem(model, container, options) {
@@ -278,7 +278,7 @@
         }(common_1.CustomItemViewer);
         exports.OnlineMapItem = OnlineMapItem;
     }, function(module, exports) {
-        module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+        module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
     }, function(module, exports, __webpack_require__) {
         "use strict";
         exports.__esModule = true;
