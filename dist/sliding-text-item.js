@@ -1,9 +1,9 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-    if (typeof exports === "object" && typeof module === "object") module.exports = factory(require("devexpress-dashboard/common"), require("devexpress-dashboard")); else if (typeof define === "function" && define.amd) define([ "devexpress-dashboard/common", "devexpress-dashboard" ], factory); else {
-        var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("devexpress-dashboard")) : factory(root["DevExpress"]["Dashboard"], root["DevExpress"]["Dashboard"]);
+    if (typeof exports === "object" && typeof module === "object") module.exports = factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("devexpress-dashboard")); else if (typeof define === "function" && define.amd) define([ "devexpress-dashboard/common", "devexpress-dashboard/model/index.metadata", "devexpress-dashboard" ], factory); else {
+        var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("devexpress-dashboard")) : factory(root["DevExpress"]["Dashboard"], root["DevExpress"]["Dashboard"]["Metadata"], root["DevExpress"]["Dashboard"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
     return function(modules) {
         var installedModules = {};
         function __webpack_require__(moduleId) {
@@ -72,6 +72,9 @@
         0: function(module, exports) {
             module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
         },
+        1: function(module, exports) {
+            module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+        },
         3: function(module, exports) {
             module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
         },
@@ -124,6 +127,8 @@
                     var _this = _super.call(this, model, container, options) || this;
                     _this.textViewer = null;
                     _this.$marquee = undefined;
+                    _this.settings = undefined;
+                    _this._subscribeProperties();
                     return _this;
                 }
                 SlidingTextItem.prototype.setSize = function(width, height) {
@@ -149,13 +154,40 @@
                     }
                     this._update();
                 };
+                SlidingTextItem.prototype._subscribeProperties = function() {
+                    var _this = this;
+                    this.subscribe("Behavior", function(behavior) {
+                        return _this._update({
+                            behavior: behavior
+                        });
+                    });
+                    this.subscribe("Direction", function(direction) {
+                        return _this._update({
+                            direction: direction
+                        });
+                    });
+                };
                 SlidingTextItem.prototype._updateSelection = function() {};
-                SlidingTextItem.prototype._update = function() {
+                SlidingTextItem.prototype._update = function(options) {
+                    this._ensureSettings();
+                    this.$marquee.empty();
+                    if (!!options) {
+                        this.$marquee.attr("behavior", options.behavior);
+                        this.$marquee.attr("direction", options.direction);
+                    }
                     var self = this;
                     this.iterateData(function(rowDataObject) {
                         var valueTexts = rowDataObject.getDisplayText("Text");
                         self.$marquee.html(self.$marquee.html() + valueTexts.join("\n"));
                     });
+                };
+                SlidingTextItem.prototype._ensureSettings = function() {
+                    if (!this.settings) {
+                        this.settings = {
+                            behavior: this.getPropertyValue("Behavior"),
+                            direction: this.getPropertyValue("Direction")
+                        };
+                    }
                 };
                 return SlidingTextItem;
             }(common_1.CustomItemViewer);
@@ -175,8 +207,20 @@
                 return {
                     "DashboardWebCustomItemStringId.DefaultNameSlidingText": "Sliding Text",
                     "DashboardWebCustomItemStringId.Text": "Text",
+                    "DashboardWebCustomItemStringId.Behavior": "Behavior",
                     "DashboardWebCustomItemStringId.Binding.SetText": "Set Text",
-                    "DashboardWebCustomItemStringId.Binding.ConfigureText": "Configure Text"
+                    "DashboardWebCustomItemStringId.Binding.ConfigureText": "Configure Text",
+                    "DashboardWebCustomItemStringId.SectionName": "Settings",
+                    "DashboardWebCustomItemStringId.BehaviorToRight": "Left to Right",
+                    "DashboardWebCustomItemStringId.BehaviorToLeft": "Right to Left",
+                    "DashboardWebCustomItemStringId.BehaviorScroll": "Scroll",
+                    "DashboardWebCustomItemStringId.BehaviorSlide": "Slide",
+                    "DashboardWebCustomItemStringId.BehaviorAlternate": "Alternate",
+                    "DashboardWebCustomItemStringId.Direction": "Direction",
+                    "DashboardWebCustomItemStringId.DirectionLeft": "Left",
+                    "DashboardWebCustomItemStringId.DirectionRight": "Right",
+                    "DashboardWebCustomItemStringId.DirectionUp": "Up",
+                    "DashboardWebCustomItemStringId.DirectionDown": "Down"
                 };
             }
             devexpress_dashboard_1.ResourceManager.setLocalizationMessages(getDefaultCustomLocalization());
@@ -184,6 +228,7 @@
         8: function(module, exports, __webpack_require__) {
             "use strict";
             exports.__esModule = true;
+            var index_metadata_1 = __webpack_require__(1);
             exports.ONLINE_SLIDING_TEXT_EXTENSION_NAME = "SlidingText";
             exports.slidingTextMeta = {
                 bindings: [ {
@@ -197,6 +242,30 @@
                     constraints: {
                         allowedTypes: [ "String" ]
                     }
+                } ],
+                properties: [ {
+                    propertyName: "Behavior",
+                    editor: index_metadata_1.editorTemplates.buttonGroup,
+                    displayName: "DashboardWebCustomItemStringId.Behavior",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    values: {
+                        Scroll: "DashboardWebCustomItemStringId.BehaviorScroll",
+                        Slide: "DashboardWebCustomItemStringId.BehaviorSlide",
+                        Alternate: "DashboardWebCustomItemStringId.BehaviorAlternate"
+                    },
+                    defaultVal: "Scroll"
+                }, {
+                    propertyName: "Direction",
+                    editor: index_metadata_1.editorTemplates.buttonGroup,
+                    displayName: "DashboardWebCustomItemStringId.Direction",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    values: {
+                        Left: "DashboardWebCustomItemStringId.DirectionLeft",
+                        Right: "DashboardWebCustomItemStringId.DirectionRight",
+                        Up: "DashboardWebCustomItemStringId.DirectionUp",
+                        Down: "DashboardWebCustomItemStringId.DirectionDown"
+                    },
+                    defaultVal: "Right"
                 } ],
                 interactivity: {
                     filter: true,

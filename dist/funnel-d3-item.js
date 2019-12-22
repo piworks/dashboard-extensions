@@ -1,6 +1,6 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-    if (typeof exports === "object" && typeof module === "object") module.exports = factory(require("devexpress-dashboard/common"), require("jquery"), require("devexpress-dashboard/model/index.metadata"), require("devexpress-dashboard"), require("d3-funnel")); else if (typeof define === "function" && define.amd) define([ "devexpress-dashboard/common", "jquery", "devexpress-dashboard/model/index.metadata", "devexpress-dashboard", "d3-funnel" ], factory); else {
-        var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("jquery"), require("devexpress-dashboard/model/index.metadata"), require("devexpress-dashboard"), require("d3-funnel")) : factory(root["DevExpress"]["Dashboard"], root["$"], root["DevExpress"]["Dashboard"]["Metadata"], root["DevExpress"]["Dashboard"], root["D3Funnel"]);
+    if (typeof exports === "object" && typeof module === "object") module.exports = factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("jquery"), require("devexpress-dashboard"), require("d3-funnel")); else if (typeof define === "function" && define.amd) define([ "devexpress-dashboard/common", "devexpress-dashboard/model/index.metadata", "jquery", "devexpress-dashboard", "d3-funnel" ], factory); else {
+        var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("jquery"), require("devexpress-dashboard"), require("d3-funnel")) : factory(root["DevExpress"]["Dashboard"], root["DevExpress"]["Dashboard"]["Metadata"], root["$"], root["DevExpress"]["Dashboard"], root["D3Funnel"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
 })(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__20__) {
@@ -79,7 +79,7 @@
     }, , function(module, exports, __webpack_require__) {
         "use strict";
         exports.__esModule = true;
-        var index_metadata_1 = __webpack_require__(2);
+        var index_metadata_1 = __webpack_require__(1);
         exports.FUNNEL_D3_EXTENSION_NAME = "FunnelD3";
         exports.funnelMeta = {
             bindings: [ {
@@ -190,7 +190,7 @@
         exports.__esModule = true;
         var common_1 = __webpack_require__(0);
         var D3Funnel = __webpack_require__(20);
-        var $ = __webpack_require__(1);
+        var $ = __webpack_require__(2);
         var FunnelD3Item = function(_super) {
             __extends(FunnelD3Item, _super);
             function FunnelD3Item(model, container, options) {

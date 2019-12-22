@@ -4,11 +4,14 @@ import { dxElement } from 'devextreme/core/element';
 export class SlidingTextItem extends CustomItemViewer {
     private textViewer: any;
     private $marquee: any;
+    private settings;
 
     constructor(model:any, container, options) {
         super(model, container, options);
         this.textViewer = null;
         this.$marquee = undefined;
+        this.settings = undefined;
+        this._subscribeProperties();
     }
 
     setSize(width: any, height: any) {
@@ -38,14 +41,34 @@ export class SlidingTextItem extends CustomItemViewer {
         this._update();
     }
 
+    _subscribeProperties() {
+        this.subscribe('Behavior', (behavior) => this._update({ behavior: behavior }));
+        this.subscribe('Direction', (direction) => this._update({ direction: direction }));
+    };
+
     private _updateSelection() {
     }
 
-    private _update() {
+    private _update(options?) {
+        this._ensureSettings();
+        this.$marquee.empty();
+        if(!!options){
+            this.$marquee.attr('behavior', options.behavior);
+            this.$marquee.attr('direction', options.direction);
+        }
         let self = this;
         this.iterateData(function(rowDataObject) {
             var valueTexts = rowDataObject.getDisplayText('Text');
             self.$marquee.html(self.$marquee.html() + valueTexts.join('\n'));
         });
+    }
+
+    private _ensureSettings() {
+        if(!this.settings) {
+            this.settings = {
+                behavior: this.getPropertyValue('Behavior'),
+                direction: this.getPropertyValue('Direction')
+            }
+        }
     }
 }

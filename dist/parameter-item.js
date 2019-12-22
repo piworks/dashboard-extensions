@@ -3,7 +3,7 @@
         var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("devextreme/ui/button")) : factory(root["DevExpress"]["Dashboard"], root["DevExpress"]["Dashboard"]["Metadata"], root["DevExpress"]["ui"]["dxButton"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__24__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__24__) {
     return function(modules) {
         var installedModules = {};
         function __webpack_require__(moduleId) {
@@ -72,8 +72,8 @@
         0: function(module, exports) {
             module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
         },
-        2: function(module, exports) {
-            module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+        1: function(module, exports) {
+            module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
         },
         22: function(module, exports, __webpack_require__) {
             "use strict";
@@ -280,7 +280,7 @@
         6: function(module, exports, __webpack_require__) {
             "use strict";
             exports.__esModule = true;
-            var index_metadata_1 = __webpack_require__(2);
+            var index_metadata_1 = __webpack_require__(1);
             exports.PARAMETER_ITEM_EXTENSION_NAME = "ParameterItem";
             exports.parameterItemMeta = {
                 properties: [ {

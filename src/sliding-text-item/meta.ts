@@ -1,3 +1,4 @@
+import { editorTemplates } from 'devexpress-dashboard/model/index.metadata';
 export const ONLINE_SLIDING_TEXT_EXTENSION_NAME = 'SlidingText';
 
 export const slidingTextMeta: any = {
@@ -12,6 +13,30 @@ export const slidingTextMeta: any = {
         constraints: {
             allowedTypes: ['String']
         }
+    }],
+    properties: [{
+        propertyName: 'Behavior',
+        editor: editorTemplates.buttonGroup,
+        displayName: "DashboardWebCustomItemStringId.Behavior",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        values: {
+            Scroll: "DashboardWebCustomItemStringId.BehaviorScroll",
+            Slide: "DashboardWebCustomItemStringId.BehaviorSlide",
+            Alternate: "DashboardWebCustomItemStringId.BehaviorAlternate"
+        },
+        defaultVal: 'Scroll'
+    },{
+        propertyName: 'Direction',
+        editor: editorTemplates.buttonGroup,
+        displayName: "DashboardWebCustomItemStringId.Direction",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        values: {
+            Left: "DashboardWebCustomItemStringId.DirectionLeft",
+            Right: "DashboardWebCustomItemStringId.DirectionRight",
+            Up: "DashboardWebCustomItemStringId.DirectionUp",
+            Down: "DashboardWebCustomItemStringId.DirectionDown",
+        },
+        defaultVal: 'Right'
     }],
     interactivity: {
         filter: true,

@@ -3,7 +3,7 @@
         var a = typeof exports === "object" ? factory(require("jquery"), require("devexpress-dashboard/designer"), require("knockout")) : factory(root["$"], root["DevExpress"]["Dashboard"]["Designer"], root["ko"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__16__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__16__) {
     return function(modules) {
         var installedModules = {};
         function __webpack_require__(moduleId) {
@@ -69,14 +69,11 @@
         __webpack_require__.p = "";
         return __webpack_require__(__webpack_require__.s = 14);
     }({
-        1: function(module, exports) {
-            module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-        },
         14: function(module, exports, __webpack_require__) {
             "use strict";
             exports.__esModule = true;
             var designer_1 = __webpack_require__(15);
-            var $ = __webpack_require__(1);
+            var $ = __webpack_require__(2);
             var ko = __webpack_require__(16);
             var CustomDashboardPanelExtension = function() {
                 function CustomDashboardPanelExtension(_dashboardControl, options) {
@@ -325,6 +322,9 @@
         },
         16: function(module, exports) {
             module.exports = __WEBPACK_EXTERNAL_MODULE__16__;
+        },
+        2: function(module, exports) {
+            module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
         }
     });
 });

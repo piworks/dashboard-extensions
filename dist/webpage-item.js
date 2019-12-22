@@ -1,6 +1,6 @@
 (function webpackUniversalModuleDefinition(root, factory) {
-    if (typeof exports === "object" && typeof module === "object") module.exports = factory(require("devexpress-dashboard/common"), require("jquery"), require("devexpress-dashboard/model/index.metadata")); else if (typeof define === "function" && define.amd) define([ "devexpress-dashboard/common", "jquery", "devexpress-dashboard/model/index.metadata" ], factory); else {
-        var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("jquery"), require("devexpress-dashboard/model/index.metadata")) : factory(root["DevExpress"]["Dashboard"], root["$"], root["DevExpress"]["Dashboard"]["Metadata"]);
+    if (typeof exports === "object" && typeof module === "object") module.exports = factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("jquery")); else if (typeof define === "function" && define.amd) define([ "devexpress-dashboard/common", "devexpress-dashboard/model/index.metadata", "jquery" ], factory); else {
+        var a = typeof exports === "object" ? factory(require("devexpress-dashboard/common"), require("devexpress-dashboard/model/index.metadata"), require("jquery")) : factory(root["DevExpress"]["Dashboard"], root["DevExpress"]["Dashboard"]["Metadata"], root["$"]);
         for (var i in a) (typeof exports === "object" ? exports : root)[i] = a[i];
     }
 })(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__) {
@@ -126,7 +126,7 @@
             }();
             exports.__esModule = true;
             var common_1 = __webpack_require__(0);
-            var $ = __webpack_require__(1);
+            var $ = __webpack_require__(2);
             var WebPageItem = function(_super) {
                 __extends(WebPageItem, _super);
                 function WebPageItem(model, container, options) {
@@ -161,7 +161,7 @@
         7: function(module, exports, __webpack_require__) {
             "use strict";
             exports.__esModule = true;
-            var index_metadata_1 = __webpack_require__(2);
+            var index_metadata_1 = __webpack_require__(1);
             exports.WEBPAGE_EXTENSION_NAME = "WebPage";
             exports.webPageMeta = {
                 bindings: [ {
