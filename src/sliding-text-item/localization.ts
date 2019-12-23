@@ -10,6 +10,7 @@ function getDefaultCustomLocalization() {
         'DashboardWebCustomItemStringId.Binding.SetText': "Set Text",
         'DashboardWebCustomItemStringId.Binding.ConfigureText': "Configure Text",
         'DashboardWebCustomItemStringId.SectionName': 'Settings',
+        'DashboardWebCustomItemStringId.BehaviorText': 'Text',
         'DashboardWebCustomItemStringId.BehaviorToRight': 'Left to Right',
         'DashboardWebCustomItemStringId.BehaviorToLeft': 'Right to Left',
         'DashboardWebCustomItemStringId.BehaviorScroll': 'Scroll',
@@ -19,7 +20,13 @@ function getDefaultCustomLocalization() {
         'DashboardWebCustomItemStringId.DirectionLeft': 'Left',
         'DashboardWebCustomItemStringId.DirectionRight': 'Right',
         'DashboardWebCustomItemStringId.DirectionUp': 'Up',
-        'DashboardWebCustomItemStringId.DirectionDown': 'Down'
+        'DashboardWebCustomItemStringId.DirectionDown': 'Down',
+        'DashboardWebCustomItemStringId.BackgroundColor': 'Background Color',
+        'DashboardWebCustomItemStringId.FontColor': 'Font Color',
+        'DashboardWebCustomItemStringId.ScrollDelay': 'Scroll Delay',
+        'DashboardWebCustomItemStringId.Font.Style.Normal': 'Normal',
+        'DashboardWebCustomItemStringId.Font.Style.Bold': 'Bold',
+        'DashboardWebCustomItemStringId.Font.Style.Italic': 'Italic'
     };
 }
 ResourceManager.setLocalizationMessages(getDefaultCustomLocalization());

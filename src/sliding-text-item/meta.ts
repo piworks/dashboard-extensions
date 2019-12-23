@@ -5,16 +5,21 @@ export const slidingTextMeta: any = {
     bindings:[{
         propertyName: 'Text',
         dataItemType: 'Dimension',
-        array: false,
+        array: true,
         enableInteractivity: true,
         displayName: "DashboardWebCustomItemStringId.Text",
         emptyPlaceholder: 'DashboardWebCustomItemStringId.Binding.SetText',
         selectedPlaceholder: "DashboardWebCustomItemStringId.Binding.ConfigureText",
         constraints: {
-            allowedTypes: ['String']
+            allowedTypes: ['Text']
         }
     }],
     properties: [{
+        propertyName: 'Text',
+        editor: editorTemplates.textFile,
+        displayName: "DashboardWebCustomItemStringId.BehaviorText",
+        defaultVal: ''
+    },{
         propertyName: 'Behavior',
         editor: editorTemplates.buttonGroup,
         displayName: "DashboardWebCustomItemStringId.Behavior",
@@ -37,6 +42,35 @@ export const slidingTextMeta: any = {
             Down: "DashboardWebCustomItemStringId.DirectionDown",
         },
         defaultVal: 'Right'
+    },{
+        propertyName: 'ScrollDelay',
+        editor: editorTemplates.toggleNumeric,
+        displayName: "DashboardWebCustomItemStringId.ScrollDelay",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        defaultVal: 85
+    },{
+        propertyName: 'BackgroundColor',
+        editor: editorTemplates.text,
+        displayName: "DashboardWebCustomItemStringId.BackgroundColor",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        defaultVal: '#ffffff'
+    },{
+        propertyName: 'FontColor',
+        editor: editorTemplates.text,
+        displayName: "DashboardWebCustomItemStringId.FontColor",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        defaultVal: '#000000'
+    },{
+        propertyName: 'FontStyle',
+        editor: editorTemplates.buttonGroup,
+        values: {
+            Normal: "DashboardWebCustomItemStringId.Font.Style.Normal",
+            Bold: "DashboardWebCustomItemStringId.Font.Style.Bold",
+            Italic: "DashboardWebCustomItemStringId.Font.Style.Italic",
+        },
+        displayName: "DashboardWebCustomItemStringId.FontColor",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        defaultVal: 'Normal'
     }],
     interactivity: {
         filter: true,

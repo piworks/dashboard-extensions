@@ -126,7 +126,7 @@
                 function SlidingTextItem(model, container, options) {
                     var _this = _super.call(this, model, container, options) || this;
                     _this.textViewer = null;
-                    _this.$marquee = undefined;
+                    _this.$element = null;
                     _this.settings = undefined;
                     _this._subscribeProperties();
                     return _this;
@@ -144,48 +144,104 @@
                 };
                 SlidingTextItem.prototype.renderContent = function(element, changeExisting, afterRenderCallback) {
                     var $element = $(element);
+                    var $marquee = null;
                     if (!changeExisting) {
                         $element.empty();
                         $element.css("overflow", "auto");
-                        this.$marquee = $("<marquee/>", {
+                        $marquee = $("<marquee/>", {
                             direction: "left"
                         });
-                        $element.append(this.$marquee);
+                        $element.append($marquee);
                     }
+                    this.$element = $element;
                     this._update();
                 };
                 SlidingTextItem.prototype._subscribeProperties = function() {
                     var _this = this;
                     this.subscribe("Behavior", function(behavior) {
-                        return _this._update({
-                            behavior: behavior
-                        });
+                        _this.settings.behavior = behavior;
+                        _this._update();
                     });
                     this.subscribe("Direction", function(direction) {
-                        return _this._update({
-                            direction: direction
-                        });
+                        _this.settings.direction = direction;
+                        _this._update();
+                    });
+                    this.subscribe("BackgroundColor", function(backgroundColor) {
+                        _this.settings.backgroundColor = backgroundColor;
+                        _this._update();
+                    });
+                    this.subscribe("FontColor", function(fontColor) {
+                        _this.settings.fontColor = fontColor;
+                        _this._update();
+                    });
+                    this.subscribe("ScrollDelay", function(scrollDelay) {
+                        _this.settings.scrollDelay = scrollDelay;
+                        _this._update();
+                    });
+                    this.subscribe("FontStyle", function(fontStyle) {
+                        _this.settings.fontStyle = fontStyle;
+                        _this._update();
                     });
                 };
                 SlidingTextItem.prototype._updateSelection = function() {};
-                SlidingTextItem.prototype._update = function(options) {
+                SlidingTextItem.prototype._update = function() {
                     this._ensureSettings();
-                    this.$marquee.empty();
-                    if (!!options) {
-                        this.$marquee.attr("behavior", options.behavior);
-                        this.$marquee.attr("direction", options.direction);
-                    }
-                    var self = this;
-                    this.iterateData(function(rowDataObject) {
-                        var valueTexts = rowDataObject.getDisplayText("Text");
-                        self.$marquee.html(self.$marquee.html() + valueTexts.join("\n"));
+                    var $marquee = null;
+                    this.$element.empty();
+                    this.$element.css("overflow", "hidden");
+                    var scrollDelay = this.settings.scrollDelay || 85;
+                    $marquee = $("<marquee/>", {
+                        direction: "left",
+                        scrolldelay: scrollDelay
                     });
+                    $marquee.css("height", "inherit");
+                    if (this.settings.behavior) {
+                        $marquee.attr("behavior", this.settings.behavior.toLowerCase());
+                    }
+                    if (this.settings.direction) {
+                        $marquee.attr("direction", this.settings.direction.toLowerCase());
+                    }
+                    if (this.settings.backgroundColor) {
+                        $marquee.css("background-color", this.settings.backgroundColor);
+                    }
+                    if (this.settings.fontColor) {
+                        $marquee.css("color", this.settings.fontColor);
+                    }
+                    var fontStyleTagName = this.getFontStyleTagName(this.settings.fontStyle);
+                    this.$element.append($marquee);
+                    var textProperty = this.getPropertyValue("Text");
+                    if (textProperty) {
+                        $marquee.html("<" + fontStyleTagName + ">" + textProperty + "</" + fontStyleTagName + ">");
+                    } else {
+                        this.iterateData(function(rowDataObject) {
+                            var valueTexts = rowDataObject.getDisplayText("Text");
+                            $marquee.html($marquee.html() + valueTexts.join("<span>&#9;</span>") + "<span>&#9;</span>");
+                        });
+                        $marquee.html("<" + fontStyleTagName + ">" + $marquee.html() + "</" + fontStyleTagName + ">");
+                    }
+                };
+                SlidingTextItem.prototype.getFontStyleTagName = function(fontStyle) {
+                    switch (fontStyle) {
+                      case "Bold":
+                        return "b";
+
+                      case "Italic":
+                        return "i";
+
+                      case "Normal":
+                      default:
+                        return "span";
+                    }
                 };
                 SlidingTextItem.prototype._ensureSettings = function() {
                     if (!this.settings) {
                         this.settings = {
                             behavior: this.getPropertyValue("Behavior"),
-                            direction: this.getPropertyValue("Direction")
+                            direction: this.getPropertyValue("Direction"),
+                            backgroundColor: this.getPropertyValue("BackgroundColor"),
+                            fontColor: this.getPropertyValue("FontColor"),
+                            fontStyle: this.getPropertyValue("FontStyle"),
+                            scrollDelay: this.getPropertyValue("ScrollDelay")
                         };
                     }
                 };
@@ -211,6 +267,7 @@
                     "DashboardWebCustomItemStringId.Binding.SetText": "Set Text",
                     "DashboardWebCustomItemStringId.Binding.ConfigureText": "Configure Text",
                     "DashboardWebCustomItemStringId.SectionName": "Settings",
+                    "DashboardWebCustomItemStringId.BehaviorText": "Text",
                     "DashboardWebCustomItemStringId.BehaviorToRight": "Left to Right",
                     "DashboardWebCustomItemStringId.BehaviorToLeft": "Right to Left",
                     "DashboardWebCustomItemStringId.BehaviorScroll": "Scroll",
@@ -220,7 +277,13 @@
                     "DashboardWebCustomItemStringId.DirectionLeft": "Left",
                     "DashboardWebCustomItemStringId.DirectionRight": "Right",
                     "DashboardWebCustomItemStringId.DirectionUp": "Up",
-                    "DashboardWebCustomItemStringId.DirectionDown": "Down"
+                    "DashboardWebCustomItemStringId.DirectionDown": "Down",
+                    "DashboardWebCustomItemStringId.BackgroundColor": "Background Color",
+                    "DashboardWebCustomItemStringId.FontColor": "Font Color",
+                    "DashboardWebCustomItemStringId.ScrollDelay": "Scroll Delay",
+                    "DashboardWebCustomItemStringId.Font.Style.Normal": "Normal",
+                    "DashboardWebCustomItemStringId.Font.Style.Bold": "Bold",
+                    "DashboardWebCustomItemStringId.Font.Style.Italic": "Italic"
                 };
             }
             devexpress_dashboard_1.ResourceManager.setLocalizationMessages(getDefaultCustomLocalization());
@@ -234,16 +297,21 @@
                 bindings: [ {
                     propertyName: "Text",
                     dataItemType: "Dimension",
-                    array: false,
+                    array: true,
                     enableInteractivity: true,
                     displayName: "DashboardWebCustomItemStringId.Text",
                     emptyPlaceholder: "DashboardWebCustomItemStringId.Binding.SetText",
                     selectedPlaceholder: "DashboardWebCustomItemStringId.Binding.ConfigureText",
                     constraints: {
-                        allowedTypes: [ "String" ]
+                        allowedTypes: [ "Text" ]
                     }
                 } ],
                 properties: [ {
+                    propertyName: "Text",
+                    editor: index_metadata_1.editorTemplates.textFile,
+                    displayName: "DashboardWebCustomItemStringId.BehaviorText",
+                    defaultVal: ""
+                }, {
                     propertyName: "Behavior",
                     editor: index_metadata_1.editorTemplates.buttonGroup,
                     displayName: "DashboardWebCustomItemStringId.Behavior",
@@ -266,6 +334,35 @@
                         Down: "DashboardWebCustomItemStringId.DirectionDown"
                     },
                     defaultVal: "Right"
+                }, {
+                    propertyName: "ScrollDelay",
+                    editor: index_metadata_1.editorTemplates.toggleNumeric,
+                    displayName: "DashboardWebCustomItemStringId.ScrollDelay",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    defaultVal: 85
+                }, {
+                    propertyName: "BackgroundColor",
+                    editor: index_metadata_1.editorTemplates.text,
+                    displayName: "DashboardWebCustomItemStringId.BackgroundColor",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    defaultVal: "#ffffff"
+                }, {
+                    propertyName: "FontColor",
+                    editor: index_metadata_1.editorTemplates.text,
+                    displayName: "DashboardWebCustomItemStringId.FontColor",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    defaultVal: "#000000"
+                }, {
+                    propertyName: "FontStyle",
+                    editor: index_metadata_1.editorTemplates.buttonGroup,
+                    values: {
+                        Normal: "DashboardWebCustomItemStringId.Font.Style.Normal",
+                        Bold: "DashboardWebCustomItemStringId.Font.Style.Bold",
+                        Italic: "DashboardWebCustomItemStringId.Font.Style.Italic"
+                    },
+                    displayName: "DashboardWebCustomItemStringId.FontColor",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    defaultVal: "Normal"
                 } ],
                 interactivity: {
                     filter: true,
