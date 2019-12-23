@@ -41,7 +41,7 @@ export const slidingTextMeta: any = {
             Up: "DashboardWebCustomItemStringId.DirectionUp",
             Down: "DashboardWebCustomItemStringId.DirectionDown",
         },
-        defaultVal: 'Right'
+        defaultVal: 'Left'
     },{
         propertyName: 'ScrollDelay',
         editor: editorTemplates.toggleNumeric,
@@ -54,6 +54,19 @@ export const slidingTextMeta: any = {
         displayName: "DashboardWebCustomItemStringId.BackgroundColor",
         sectionName: 'DashboardWebCustomItemStringId.SectionName',
         defaultVal: '#ffffff'
+    },{
+        propertyName: 'FontFamily',
+        editor: editorTemplates.list,
+        values: {
+            'Arial': 'DashboardWebCustomItemStringId.Font.Family.Arial',
+            'Segoe UI': 'DashboardWebCustomItemStringId.Font.Family.SegoeUI',
+            'Helvetica Neue': 'DashboardWebCustomItemStringId.Font.Family.HelveticaNeue',
+            'Verdana': 'DashboardWebCustomItemStringId.Font.Family.Verdana',
+            'sans-serif': 'DashboardWebCustomItemStringId.Font.Family.SansSerif',
+        },
+        displayName: "DashboardWebCustomItemStringId.Font.Family",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        defaultVal: 'Arial'
     },{
         propertyName: 'FontColor',
         editor: editorTemplates.text,
@@ -71,6 +84,40 @@ export const slidingTextMeta: any = {
         displayName: "DashboardWebCustomItemStringId.FontColor",
         sectionName: 'DashboardWebCustomItemStringId.SectionName',
         defaultVal: 'Normal'
+    },{
+        propertyName: 'FontSize',
+        editor: editorTemplates.numeric,
+        displayName: "DashboardWebCustomItemStringId.FontSize",
+        sectionName: 'DashboardWebCustomItemStringId.SectionName',
+        defaultVal: 14
+    },{
+        propertyName: 'Flash',
+        editor: editorTemplates.buttonGroup,
+        values: {
+            On: 'DashboardWebCustomItemStringId.Flash.On',
+            Off: 'DashboardWebCustomItemStringId.Flash.Off'
+        },
+        displayName: "DashboardWebCustomItemStringId.Flash",
+        sectionName: 'DashboardWebCustomItemStringId.SectionNameFlash',
+        defaultVal: 'Off'
+    },{
+        propertyName: 'FlashStartColor',
+        editor: editorTemplates.text,
+        displayName: "DashboardWebCustomItemStringId.Flash.StartColor",
+        sectionName: 'DashboardWebCustomItemStringId.SectionNameFlash',
+        defaultVal: '#337ab7'
+    },{
+        propertyName: 'FlashEndColor',
+        editor: editorTemplates.text,
+        displayName: "DashboardWebCustomItemStringId.Flash.EndColor",
+        sectionName: 'DashboardWebCustomItemStringId.SectionNameFlash',
+        defaultVal: '#ffffff'
+    },{
+        propertyName: 'FlashDuration',
+        editor: editorTemplates.numeric,
+        displayName: "DashboardWebCustomItemStringId.Flash.Duration",
+        sectionName: 'DashboardWebCustomItemStringId.SectionNameFlash',
+        defaultVal: 3
     }],
     interactivity: {
         filter: true,

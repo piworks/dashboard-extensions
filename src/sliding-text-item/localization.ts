@@ -24,9 +24,23 @@ function getDefaultCustomLocalization() {
         'DashboardWebCustomItemStringId.BackgroundColor': 'Background Color',
         'DashboardWebCustomItemStringId.FontColor': 'Font Color',
         'DashboardWebCustomItemStringId.ScrollDelay': 'Scroll Delay',
+        'DashboardWebCustomItemStringId.Font.Family': 'Font Family',
+        'DashboardWebCustomItemStringId.Font.Family.Arial': 'Arial',
+        'DashboardWebCustomItemStringId.Font.Family.SegoeUI': 'Segoe UI',
+        'DashboardWebCustomItemStringId.Font.Family.HelveticaNeue': 'Helvetica Neue',
+        'DashboardWebCustomItemStringId.Font.Family.Verdana': 'Verdana',
+        'DashboardWebCustomItemStringId.Font.Family.SansSerif': 'sans-serif',
         'DashboardWebCustomItemStringId.Font.Style.Normal': 'Normal',
         'DashboardWebCustomItemStringId.Font.Style.Bold': 'Bold',
-        'DashboardWebCustomItemStringId.Font.Style.Italic': 'Italic'
+        'DashboardWebCustomItemStringId.Font.Style.Italic': 'Italic',
+        'DashboardWebCustomItemStringId.FontSize': 'Font Size',
+        'DashboardWebCustomItemStringId.SectionNameFlash': 'Flash',
+        'DashboardWebCustomItemStringId.Flash': 'Flash',
+        'DashboardWebCustomItemStringId.Flash.On': 'On',
+        'DashboardWebCustomItemStringId.Flash.Off': 'Off',
+        'DashboardWebCustomItemStringId.Flash.StartColor': 'Flash Start Color',
+        'DashboardWebCustomItemStringId.Flash.EndColor': 'Flash End Color',
+        'DashboardWebCustomItemStringId.Flash.Duration': 'Flash Duration (s)'
     };
 }
 ResourceManager.setLocalizationMessages(getDefaultCustomLocalization());

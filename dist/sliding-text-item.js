@@ -121,6 +121,12 @@
             }();
             exports.__esModule = true;
             var common_1 = __webpack_require__(0);
+            var getCustomizedFlashStyle = function(backgroundStartColor, backgroundEndColor, duration) {
+                return "\n.quadrat {\n    width: inherit;\n    height: inherit;\n    -webkit-animation: FLASH " + duration + "s infinite; /* Safari 4+ */\n    -moz-animation:    FLASH " + duration + "s infinite; /* Fx 5+ */\n    -o-animation:      FLASH " + duration + "s infinite; /* Opera 12+ */\n    animation:         FLASH " + duration + "s infinite; /* IE 10+, Fx 29+ */\n}\n  \n@-webkit-keyframes FLASH {\n    0%, 49% {\n        background-color: " + backgroundStartColor + ";\n    }\n    50%, 100% {\n        background-color: " + backgroundEndColor + ";\n    }\n}";
+            };
+            var getCustomizedFontStyle = function(fontFamily) {
+                return "\n.fontFamilyCustom {\n    font-family: '" + fontFamily + "';\n}";
+            };
             var SlidingTextItem = function(_super) {
                 __extends(SlidingTextItem, _super);
                 function SlidingTextItem(model, container, options) {
@@ -158,6 +164,9 @@
                 };
                 SlidingTextItem.prototype._subscribeProperties = function() {
                     var _this = this;
+                    this.subscribe("Text", function() {
+                        _this._update();
+                    });
                     this.subscribe("Behavior", function(behavior) {
                         _this.settings.behavior = behavior;
                         _this._update();
@@ -170,16 +179,40 @@
                         _this.settings.backgroundColor = backgroundColor;
                         _this._update();
                     });
+                    this.subscribe("FontFamily", function(fontFamily) {
+                        _this.settings.fontFamily = fontFamily;
+                        _this._update();
+                    });
                     this.subscribe("FontColor", function(fontColor) {
                         _this.settings.fontColor = fontColor;
+                        _this._update();
+                    });
+                    this.subscribe("FontStyle", function(fontStyle) {
+                        _this.settings.fontStyle = fontStyle;
+                        _this._update();
+                    });
+                    this.subscribe("FontSize", function(fontSize) {
+                        _this.settings.fontSize = fontSize;
                         _this._update();
                     });
                     this.subscribe("ScrollDelay", function(scrollDelay) {
                         _this.settings.scrollDelay = scrollDelay;
                         _this._update();
                     });
-                    this.subscribe("FontStyle", function(fontStyle) {
-                        _this.settings.fontStyle = fontStyle;
+                    this.subscribe("Flash", function(flash) {
+                        _this.settings.flash = flash;
+                        _this._update();
+                    });
+                    this.subscribe("FlashStartColor", function(flashStartColor) {
+                        _this.settings.flashStartColor = flashStartColor;
+                        _this._update();
+                    });
+                    this.subscribe("FlashEndColor", function(flashEndColor) {
+                        _this.settings.flashEndColor = flashEndColor;
+                        _this._update();
+                    });
+                    this.subscribe("FlashDuration", function(flashDuration) {
+                        _this.settings.flashDuration = flashDuration;
                         _this._update();
                     });
                 };
@@ -191,6 +224,7 @@
                     this.$element.css("overflow", "hidden");
                     var scrollDelay = this.settings.scrollDelay || 85;
                     $marquee = $("<marquee/>", {
+                        id: "slidingTextContainer",
                         direction: "left",
                         scrolldelay: scrollDelay
                     });
@@ -204,8 +238,24 @@
                     if (this.settings.backgroundColor) {
                         $marquee.css("background-color", this.settings.backgroundColor);
                     }
+                    if (this.settings.fontFamily) {
+                        $("#fontFamilyStyle").remove();
+                        $("<style id=\"fontFamilyStyle\" type='text/css'>" + getCustomizedFontStyle(this.settings.fontFamily) + "</style>").appendTo("head");
+                        $marquee.addClass("fontFamilyCustom");
+                    }
                     if (this.settings.fontColor) {
                         $marquee.css("color", this.settings.fontColor);
+                    }
+                    if (this.settings.fontSize) {
+                        $marquee.css("font-size", this.settings.fontSize + "px");
+                    }
+                    if (this.settings.flash) {
+                        $("#flashStyle").remove();
+                        var startColor = this.settings.flashStartColor || "#337ab7";
+                        var endColor = this.settings.flashEndColor || "#000000";
+                        var duration = this.settings.flashDuration || 4;
+                        $("<style id=\"flashStyle\" type='text/css'>" + getCustomizedFlashStyle(startColor, endColor, duration) + "</style>").appendTo("head");
+                        $marquee.addClass("quadrat");
                     }
                     var fontStyleTagName = this.getFontStyleTagName(this.settings.fontStyle);
                     this.$element.append($marquee);
@@ -239,9 +289,15 @@
                             behavior: this.getPropertyValue("Behavior"),
                             direction: this.getPropertyValue("Direction"),
                             backgroundColor: this.getPropertyValue("BackgroundColor"),
+                            fontFamily: this.getPropertyValue("FontFamily"),
                             fontColor: this.getPropertyValue("FontColor"),
                             fontStyle: this.getPropertyValue("FontStyle"),
-                            scrollDelay: this.getPropertyValue("ScrollDelay")
+                            fontSize: this.getPropertyValue("FontSize"),
+                            scrollDelay: this.getPropertyValue("ScrollDelay"),
+                            flash: this.getPropertyValue("Flash"),
+                            flashStartColor: this.getPropertyValue("FlashStartColor"),
+                            flashEndColor: this.getPropertyValue("FlashEndColor"),
+                            flashDuration: this.getPropertyValue("FlashDuration")
                         };
                     }
                 };
@@ -281,9 +337,23 @@
                     "DashboardWebCustomItemStringId.BackgroundColor": "Background Color",
                     "DashboardWebCustomItemStringId.FontColor": "Font Color",
                     "DashboardWebCustomItemStringId.ScrollDelay": "Scroll Delay",
+                    "DashboardWebCustomItemStringId.Font.Family": "Font Family",
+                    "DashboardWebCustomItemStringId.Font.Family.Arial": "Arial",
+                    "DashboardWebCustomItemStringId.Font.Family.SegoeUI": "Segoe UI",
+                    "DashboardWebCustomItemStringId.Font.Family.HelveticaNeue": "Helvetica Neue",
+                    "DashboardWebCustomItemStringId.Font.Family.Verdana": "Verdana",
+                    "DashboardWebCustomItemStringId.Font.Family.SansSerif": "sans-serif",
                     "DashboardWebCustomItemStringId.Font.Style.Normal": "Normal",
                     "DashboardWebCustomItemStringId.Font.Style.Bold": "Bold",
-                    "DashboardWebCustomItemStringId.Font.Style.Italic": "Italic"
+                    "DashboardWebCustomItemStringId.Font.Style.Italic": "Italic",
+                    "DashboardWebCustomItemStringId.FontSize": "Font Size",
+                    "DashboardWebCustomItemStringId.SectionNameFlash": "Flash",
+                    "DashboardWebCustomItemStringId.Flash": "Flash",
+                    "DashboardWebCustomItemStringId.Flash.On": "On",
+                    "DashboardWebCustomItemStringId.Flash.Off": "Off",
+                    "DashboardWebCustomItemStringId.Flash.StartColor": "Flash Start Color",
+                    "DashboardWebCustomItemStringId.Flash.EndColor": "Flash End Color",
+                    "DashboardWebCustomItemStringId.Flash.Duration": "Flash Duration (s)"
                 };
             }
             devexpress_dashboard_1.ResourceManager.setLocalizationMessages(getDefaultCustomLocalization());
@@ -333,7 +403,7 @@
                         Up: "DashboardWebCustomItemStringId.DirectionUp",
                         Down: "DashboardWebCustomItemStringId.DirectionDown"
                     },
-                    defaultVal: "Right"
+                    defaultVal: "Left"
                 }, {
                     propertyName: "ScrollDelay",
                     editor: index_metadata_1.editorTemplates.toggleNumeric,
@@ -346,6 +416,19 @@
                     displayName: "DashboardWebCustomItemStringId.BackgroundColor",
                     sectionName: "DashboardWebCustomItemStringId.SectionName",
                     defaultVal: "#ffffff"
+                }, {
+                    propertyName: "FontFamily",
+                    editor: index_metadata_1.editorTemplates.list,
+                    values: {
+                        Arial: "DashboardWebCustomItemStringId.Font.Family.Arial",
+                        "Segoe UI": "DashboardWebCustomItemStringId.Font.Family.SegoeUI",
+                        "Helvetica Neue": "DashboardWebCustomItemStringId.Font.Family.HelveticaNeue",
+                        Verdana: "DashboardWebCustomItemStringId.Font.Family.Verdana",
+                        "sans-serif": "DashboardWebCustomItemStringId.Font.Family.SansSerif"
+                    },
+                    displayName: "DashboardWebCustomItemStringId.Font.Family",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    defaultVal: "Arial"
                 }, {
                     propertyName: "FontColor",
                     editor: index_metadata_1.editorTemplates.text,
@@ -363,6 +446,40 @@
                     displayName: "DashboardWebCustomItemStringId.FontColor",
                     sectionName: "DashboardWebCustomItemStringId.SectionName",
                     defaultVal: "Normal"
+                }, {
+                    propertyName: "FontSize",
+                    editor: index_metadata_1.editorTemplates.numeric,
+                    displayName: "DashboardWebCustomItemStringId.FontSize",
+                    sectionName: "DashboardWebCustomItemStringId.SectionName",
+                    defaultVal: 14
+                }, {
+                    propertyName: "Flash",
+                    editor: index_metadata_1.editorTemplates.buttonGroup,
+                    values: {
+                        On: "DashboardWebCustomItemStringId.Flash.On",
+                        Off: "DashboardWebCustomItemStringId.Flash.Off"
+                    },
+                    displayName: "DashboardWebCustomItemStringId.Flash",
+                    sectionName: "DashboardWebCustomItemStringId.SectionNameFlash",
+                    defaultVal: "Off"
+                }, {
+                    propertyName: "FlashStartColor",
+                    editor: index_metadata_1.editorTemplates.text,
+                    displayName: "DashboardWebCustomItemStringId.Flash.StartColor",
+                    sectionName: "DashboardWebCustomItemStringId.SectionNameFlash",
+                    defaultVal: "#337ab7"
+                }, {
+                    propertyName: "FlashEndColor",
+                    editor: index_metadata_1.editorTemplates.text,
+                    displayName: "DashboardWebCustomItemStringId.Flash.EndColor",
+                    sectionName: "DashboardWebCustomItemStringId.SectionNameFlash",
+                    defaultVal: "#ffffff"
+                }, {
+                    propertyName: "FlashDuration",
+                    editor: index_metadata_1.editorTemplates.numeric,
+                    displayName: "DashboardWebCustomItemStringId.Flash.Duration",
+                    sectionName: "DashboardWebCustomItemStringId.SectionNameFlash",
+                    defaultVal: 3
                 } ],
                 interactivity: {
                     filter: true,
