@@ -30,6 +30,7 @@ function getDefaultCustomLocalization() {
         'DashboardWebCustomItemStringId.Font.Family.HelveticaNeue': 'Helvetica Neue',
         'DashboardWebCustomItemStringId.Font.Family.Verdana': 'Verdana',
         'DashboardWebCustomItemStringId.Font.Family.SansSerif': 'sans-serif',
+        'DashboardWebCustomItemStringId.Font.Style': 'Font Style',
         'DashboardWebCustomItemStringId.Font.Style.Normal': 'Normal',
         'DashboardWebCustomItemStringId.Font.Style.Bold': 'Bold',
         'DashboardWebCustomItemStringId.Font.Style.Italic': 'Italic',

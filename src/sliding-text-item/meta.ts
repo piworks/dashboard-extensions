@@ -81,7 +81,7 @@ export const slidingTextMeta: any = {
             Bold: "DashboardWebCustomItemStringId.Font.Style.Bold",
             Italic: "DashboardWebCustomItemStringId.Font.Style.Italic",
         },
-        displayName: "DashboardWebCustomItemStringId.FontColor",
+        displayName: "DashboardWebCustomItemStringId.Font.Style",
         sectionName: 'DashboardWebCustomItemStringId.SectionName',
         defaultVal: 'Normal'
     },{
