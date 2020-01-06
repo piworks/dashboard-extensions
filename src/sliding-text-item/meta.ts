@@ -9,10 +9,7 @@ export const slidingTextMeta: any = {
         enableInteractivity: true,
         displayName: "DashboardWebCustomItemStringId.Text",
         emptyPlaceholder: 'DashboardWebCustomItemStringId.Binding.SetText',
-        selectedPlaceholder: "DashboardWebCustomItemStringId.Binding.ConfigureText",
-        constraints: {
-            allowedTypes: ['Text']
-        }
+        selectedPlaceholder: "DashboardWebCustomItemStringId.Binding.ConfigureText"
     }],
     properties: [{
         propertyName: 'Text',
@@ -81,7 +78,7 @@ export const slidingTextMeta: any = {
             Bold: "DashboardWebCustomItemStringId.Font.Style.Bold",
             Italic: "DashboardWebCustomItemStringId.Font.Style.Italic",
         },
-        displayName: "DashboardWebCustomItemStringId.Font.Style",
+        displayName: "DashboardWebCustomItemStringId.FontColor",
         sectionName: 'DashboardWebCustomItemStringId.SectionName',
         defaultVal: 'Normal'
     },{
@@ -118,6 +115,12 @@ export const slidingTextMeta: any = {
         displayName: "DashboardWebCustomItemStringId.Flash.Duration",
         sectionName: 'DashboardWebCustomItemStringId.SectionNameFlash',
         defaultVal: 3
+    },{
+        propertyName: 'Tips',
+        editor: { header: "tips-section-template" },
+        displayName: "",
+        sectionName: 'DashboardWebCustomItemStringId.SectionNameTips',
+        defaultVal: ''
     }],
     interactivity: {
         filter: true,

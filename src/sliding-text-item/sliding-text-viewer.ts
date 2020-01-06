@@ -33,12 +33,14 @@ export class SlidingTextItem extends CustomItemViewer {
     private textViewer: any;
     private $element: any;
     private settings: any;
+    private maxDataItemCount: number; 
 
     constructor(model:any, container, options) {
         super(model, container, options);
         this.textViewer = null;
         this.$element = null;
         this.settings = undefined;
+        this.maxDataItemCount = 1000;
         this._subscribeProperties();
     }
 
@@ -72,7 +74,8 @@ export class SlidingTextItem extends CustomItemViewer {
     }
 
     _subscribeProperties() {
-        this.subscribe('Text', () => {
+        this.subscribe('Text', (text) => {
+            this.settings.text = text;
             this._update();
         });
         this.subscribe('Behavior', (behavior) => {
@@ -137,9 +140,6 @@ export class SlidingTextItem extends CustomItemViewer {
         let scrollDelay = this.settings.scrollDelay || 85;
         $marquee = $('<marquee/>', { id:'slidingTextContainer', direction: 'left', scrolldelay: scrollDelay });
         $marquee.css('height', 'inherit');
-        if(this.settings.behavior) {
-            $marquee.attr('behavior', this.settings.behavior.toLowerCase());
-        } 
         if(this.settings.direction) {
             $marquee.attr('direction', this.settings.direction.toLowerCase());
         }
@@ -157,7 +157,7 @@ export class SlidingTextItem extends CustomItemViewer {
         if(this.settings.fontSize) {
             $marquee.css('font-size', this.settings.fontSize + 'px');
         }
-        if(this.settings.flash) {
+        if(this.settings.flash === 'On') {
             $('#flashStyle').remove();
             let startColor = this.settings.flashStartColor || '#337ab7';
             let endColor = this.settings.flashEndColor || '#000000';
@@ -168,18 +168,30 @@ export class SlidingTextItem extends CustomItemViewer {
 
         let fontStyleTagName = this.getFontStyleTagName(this.settings.fontStyle);
 
-        this.$element.append($marquee);
-        let textProperty = this.getPropertyValue('Text');
-        if(textProperty){
-            $marquee.html(`<${fontStyleTagName}>${textProperty}</${fontStyleTagName}>`);
+        if(this.settings.text){
+            $marquee.html(`<${fontStyleTagName}>${this.settings.text}</${fontStyleTagName}>`);
         } else {
+            let currentDataItemsCounter = 0;
+            let self = this;
             this.iterateData(function(rowDataObject) {
+                currentDataItemsCounter++;
+                if(currentDataItemsCounter > self.maxDataItemCount) {
+                    return;
+                }
                 var valueTexts = rowDataObject.getDisplayText('Text');
-                $marquee.html($marquee.html() + valueTexts.join('<span>&#9;</span>') + '<span>&#9;</span>');
+                $marquee.html($marquee.html() + valueTexts.join());
             });
             $marquee.html(`<${fontStyleTagName}>${$marquee.html()}</${fontStyleTagName}>`);
         }
 
+        if(this.settings.behavior) {
+            $marquee.attr('behavior', this.settings.behavior.toLowerCase());
+            if(this.settings.behavior.toLowerCase() === 'alternate'){
+                $marquee.attr("direction", "down")
+                $marquee.html(`<marquee behavior="alternate">${$marquee.html()}</marquee>`)
+            }
+        } 
+        this.$element.append($marquee);
     }
 
     private getFontStyleTagName (fontStyle: string) {
@@ -197,6 +209,7 @@ export class SlidingTextItem extends CustomItemViewer {
     private _ensureSettings() {
         if(!this.settings) {
             this.settings = {
+                text: this.getPropertyValue('Text'),
                 behavior: this.getPropertyValue('Behavior'),
                 direction: this.getPropertyValue('Direction'),
                 backgroundColor: this.getPropertyValue('BackgroundColor'),

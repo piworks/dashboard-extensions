@@ -41,7 +41,9 @@ function getDefaultCustomLocalization() {
         'DashboardWebCustomItemStringId.Flash.Off': 'Off',
         'DashboardWebCustomItemStringId.Flash.StartColor': 'Flash Start Color',
         'DashboardWebCustomItemStringId.Flash.EndColor': 'Flash End Color',
-        'DashboardWebCustomItemStringId.Flash.Duration': 'Flash Duration (s)'
+        'DashboardWebCustomItemStringId.Flash.Duration': 'Flash Duration (s)',
+        'DashboardWebCustomItemStringId.Tips.Prop': 'some tips',
+        'DashboardWebCustomItemStringId.SectionNameTips': 'Tips',
     };
 }
 ResourceManager.setLocalizationMessages(getDefaultCustomLocalization());
